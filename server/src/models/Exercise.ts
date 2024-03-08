@@ -3,7 +3,12 @@ const Schema = mongoose.Schema;
 
 const ExerciseSchema = new Schema({
     exercise_name: String,
-    progressions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Progression' }],
+    progressions: [
+        {
+            set: Number,
+            rep: Number,
+        },
+    ],
 });
 
 const ExerciseModel = mongoose.model('Exercise', ExerciseSchema);

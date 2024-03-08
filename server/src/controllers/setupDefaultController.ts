@@ -1,7 +1,8 @@
+import { Request, Response } from 'express';
 import Program from '../models/Program';
 import { friday, monday, saturday, thursday, tuesday, wednesday } from './daysController';
 
-export async function setupDefaultProgram() {
+export async function setupDefaultProgram(req: Request, res: Response) {
     try {
         const defaultProgram = new Program({
             program_name: 'default_program',
@@ -9,7 +10,9 @@ export async function setupDefaultProgram() {
         });
 
         await defaultProgram.save();
+        res.json(defaultProgram);
     } catch (error) {
         console.error('Error setting up compound sets:', error);
+        throw new Error('UNSUCCESSFULL SETUP');
     }
 }

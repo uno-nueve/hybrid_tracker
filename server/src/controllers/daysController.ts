@@ -39,12 +39,17 @@ export const saturday = new Day({
 });
 
 async function setupDays() {
-    await monday.save();
-    await tuesday.save();
-    await wednesday.save();
-    await thursday.save();
-    await friday.save();
-    await saturday.save();
+    try {
+        await monday.save();
+        await tuesday.save();
+        await wednesday.save();
+        await thursday.save();
+        await friday.save();
+        await saturday.save();
+    } catch (error: any) {
+        console.error('Error setting up days:', error.message);
+        throw new Error('UNSUCCESSFULL SETUP');
+    }
 }
 
 setupDays();
